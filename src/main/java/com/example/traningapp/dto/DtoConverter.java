@@ -34,4 +34,22 @@ public class DtoConverter {
                 myTraining.getUsers().getUId()
         );
     }
+
+    public Users requestDtoToEntityUser(UserRequestDto userRequestDto){
+
+            return new Users(
+                    userRequestDto.userName(),
+                    userRequestDto.email()
+            );
+
+    }
+
+    public UserResponseDto entityToResponseDtoUser(Users user){
+        return new UserResponseDto(
+                user.getUId(),
+                user.getUserName(),
+                user.getEmail()
+
+        );
+    }
 }

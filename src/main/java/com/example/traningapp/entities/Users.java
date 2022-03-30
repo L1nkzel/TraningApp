@@ -28,4 +28,9 @@ public class Users {
     @OneToMany(mappedBy = "users")
     @JsonIgnore
     private Set<MyTraining> myTrainings;
+
+    public Users(String userName, String email) {
+        this.userName = userName;
+        this.email = email;
+    }
 }
