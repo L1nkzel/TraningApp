@@ -25,7 +25,7 @@ public class DtoConverter {
         );
     }
 
-    public MtResponseDto entityToTesponseDto(MyTraining myTraining){
+    public MtResponseDto entityToResponseDto(MyTraining myTraining){
         return new MtResponseDto(
                 myTraining.getId(),
                 myTraining.getExercise(),
