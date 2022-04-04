@@ -11,7 +11,8 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.RouterLink;
 
-public class AppView extends AppLayout {
+
+public class AppView extends AppLayout{
 
     public AppView(){
         HorizontalLayout navbarLayout = new HorizontalLayout();
