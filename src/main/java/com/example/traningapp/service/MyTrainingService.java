@@ -39,7 +39,7 @@ public class MyTrainingService {
     public MyTraining updateExerciseById(int id, MyTraining updatedExercise) {
             MyTraining myTraining = myTrainingRepo.findById(id).orElseThrow();
 
-            BeanUtils.copyProperties(updatedExercise, myTraining,"id","uId");
+            BeanUtils.copyProperties(updatedExercise, myTraining,"id");
             return myTrainingRepo.save(myTraining);
 
         }

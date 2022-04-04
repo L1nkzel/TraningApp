@@ -5,6 +5,7 @@ import com.example.traningapp.service.MyTrainingService;
 import com.example.traningapp.views.MyTrainingView;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextField;
@@ -22,16 +23,24 @@ public class MyTrainingForm extends FormLayout {
     Binder<MyTraining> binder = new BeanValidationBinder<>(MyTraining.class);
     MyTrainingService myTrainingService;
     MyTrainingView myTrainingView;
+    Dialog dialog;
 
-    public MyTrainingForm(MyTrainingService myTrainingService, MyTrainingView myTrainingView){
+    public MyTrainingForm(MyTrainingService myTrainingService, MyTrainingView myTrainingView, Dialog dialog){
         this.myTrainingService = myTrainingService;
         this.myTrainingView = myTrainingView;
+        this.dialog=new Dialog();
         setVisible(false);
         binder.bindInstanceFields(this);
 
+        saveButton.addClickListener(buttonClickEvent -> {
+            onSave();
+            dialog.close();
+        }
+        );
 
-        saveButton.addClickListener(buttonClickEvent -> onSave());
         add(exercise,numRep,numSet,saveButton);
+
+
     }
 
     private void onSave() {
@@ -41,7 +50,7 @@ public class MyTrainingForm extends FormLayout {
         } else {
             myTrainingService.createExercise(myTraining);
         }
-        setMyTraining(null);
+        setMyTraining(myTraining);
         myTrainingView.updateItems();
     }
 
