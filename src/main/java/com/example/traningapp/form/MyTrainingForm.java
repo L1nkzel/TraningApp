@@ -3,17 +3,19 @@ package com.example.traningapp.form;
 import com.example.traningapp.entities.MyTraining;
 import com.example.traningapp.service.MyTrainingService;
 import com.example.traningapp.views.MyTrainingView;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 
 public class MyTrainingForm extends FormLayout {
 
-    TextField excercise = new TextField("Excercise");
-    TextField reps = new TextField("Reps");
-    TextField set = new TextField("Set");
+    TextField exercise = new TextField("Excercise");
+    IntegerField numRep = new IntegerField("Reps");
+    IntegerField numSet = new IntegerField("Set");
     Button saveButton = new Button("Save");
 
 
@@ -25,11 +27,11 @@ public class MyTrainingForm extends FormLayout {
         this.myTrainingService = myTrainingService;
         this.myTrainingView = myTrainingView;
         setVisible(false);
-       
+        binder.bindInstanceFields(this);
+
 
         saveButton.addClickListener(buttonClickEvent -> onSave());
-
-        add(excercise,reps,set,saveButton);
+        add(exercise,numRep,numSet,saveButton);
     }
 
     private void onSave() {
@@ -40,6 +42,7 @@ public class MyTrainingForm extends FormLayout {
             myTrainingService.createExercise(myTraining);
         }
         setMyTraining(null);
+        myTrainingView.updateItems();
     }
 
     public void setMyTraining(MyTraining myTraining) {

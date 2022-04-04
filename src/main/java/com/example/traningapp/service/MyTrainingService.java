@@ -28,18 +28,18 @@ public class MyTrainingService {
         return myTrainingRepo.findById(id).orElseThrow();
     }
 
-    public MyTraining createExercise(MyTraining myTrainingIn) {
-        return myTrainingRepo.save(myTrainingIn);
+    public MyTraining createExercise(MyTraining myTraining) {
+        return myTrainingRepo.save(myTraining);
     }
 
-    public void deleteById(MyTraining id) {
-        myTrainingRepo.delete(id);
+    public void deleteById(int id) {
+        myTrainingRepo.deleteById(id);
     }
 
     public MyTraining updateExerciseById(int id, MyTraining updatedExercise) {
             MyTraining myTraining = myTrainingRepo.findById(id).orElseThrow();
 
-            BeanUtils.copyProperties(updatedExercise, myTraining,"id");
+            BeanUtils.copyProperties(updatedExercise, myTraining,"id","uId");
             return myTrainingRepo.save(myTraining);
 
         }

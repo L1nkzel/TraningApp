@@ -16,8 +16,11 @@ public class MyTraining {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+    @Column(nullable = false)
     private String exercise;
+    @Column(nullable = false)
     private int numRep;
+    @Column(nullable = false)
     private int numSet;
 
     @ManyToOne

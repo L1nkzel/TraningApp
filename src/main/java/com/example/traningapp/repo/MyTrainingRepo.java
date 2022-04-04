@@ -9,4 +9,5 @@ import java.util.List;
 public interface MyTrainingRepo extends JpaRepository<MyTraining, Integer > {
 
     List<MyTraining> findByUsers_uId(String uId);
+
 }
