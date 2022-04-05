@@ -37,9 +37,9 @@ public class MyTrainingView extends VerticalLayout implements AppShellConfigurat
         grid.setItems(myTrainingService.findAll());
 
 
-        grid.addColumn(MyTraining::getExercise).setHeader("Exercise").setSortable(true);
-        grid.addColumn(MyTraining::getNumRep).setHeader("Reps").setSortable(true);
-        grid.addColumn(MyTraining::getNumSet).setHeader("Set").setSortable(true);
+        grid.addColumn(MyTraining::getExercise).setHeader("Exercise").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
+        grid.addColumn(MyTraining::getNumRep).setHeader("Reps").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
+        grid.addColumn(MyTraining::getNumSet).setHeader("Set").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
         grid.setWidth(15,Unit.REM);
 
 
@@ -85,7 +85,7 @@ public class MyTrainingView extends VerticalLayout implements AppShellConfigurat
 
         add(main);
 
-        Button button = new Button("Add new excercise", buttonClickEvent -> {
+        Button button = new Button("Add New Exercise", new Icon(VaadinIcon.PLUS), buttonClickEvent -> {
             Dialog dialog = new Dialog();
             MyTrainingForm myTrainingForm = new MyTrainingForm(myTrainingService, this,dialog);
             myTrainingForm.setMyTraining(new MyTraining());
