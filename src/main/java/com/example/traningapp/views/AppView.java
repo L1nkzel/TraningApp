@@ -1,5 +1,7 @@
 package com.example.traningapp.views;
 
+import com.example.traningapp.security.PrincipalUtils;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
@@ -17,9 +19,18 @@ public class AppView extends AppLayout{
     public AppView(){
         HorizontalLayout navbarLayout = new HorizontalLayout();
         H1 navbarTitle = new H1("My Training");
-        Button loginButton = new Button("Login", e -> Notification.show("Coming soon..."));
+        navbarLayout.add(new DrawerToggle(),navbarTitle);
+
+
+        Button loginButton = new Button("Login", e -> UI.getCurrent().navigate(LoginView.class));
         loginButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        navbarLayout.add(new DrawerToggle(),navbarTitle, loginButton);
+        Button logoutButton = new Button("Logout", evt -> PrincipalUtils.logout());
+        logoutButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
+        navbarLayout.add(PrincipalUtils.isAuthenticated() ? logoutButton : loginButton);
+
+        if(PrincipalUtils.isAuthenticated())
+            Notification.show(PrincipalUtils.getName());
 
         navbarLayout.setWidthFull();
         navbarLayout.setMargin(true);

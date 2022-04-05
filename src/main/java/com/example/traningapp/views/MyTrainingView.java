@@ -2,6 +2,7 @@ package com.example.traningapp.views;
 
 import com.example.traningapp.entities.MyTraining;
 import com.example.traningapp.form.MyTrainingForm;
+import com.example.traningapp.security.PrincipalUtils;
 import com.example.traningapp.service.MyTrainingService;
 import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.button.Button;
@@ -19,19 +20,23 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 
+import javax.annotation.security.PermitAll;
+
 import static com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode.*;
 
 @Theme(themeClass = Lumo.class, variant = Lumo.DARK)
 @Route(value = "/myTraining", layout = AppView.class)
+@PermitAll
 public class MyTrainingView extends VerticalLayout implements AppShellConfigurator {
 
     MyTrainingService myTrainingService;
     Grid<MyTraining> grid = new Grid<>(MyTraining.class,false);
     MyTrainingForm myTrainingForm;
     Dialog dialog = new Dialog();
+    PrincipalUtils principalUtils;
 
-    public MyTrainingView(MyTrainingService myTrainingService){
-
+    public MyTrainingView(MyTrainingService myTrainingService, PrincipalUtils principalUtils){
+        this.principalUtils = principalUtils;
         this.myTrainingService = myTrainingService;
         myTrainingForm = new MyTrainingForm(myTrainingService, this, dialog);
         grid.setItems(myTrainingService.findAll());
@@ -43,13 +48,17 @@ public class MyTrainingView extends VerticalLayout implements AppShellConfigurat
         grid.setWidth(15,Unit.REM);
 
 
-        grid.addComponentColumn(myTraining -> {
+        grid.addComponentColumn(evt -> {
 
             Button editButton = new Button(new Icon(VaadinIcon.EDIT), buttonClickEvent -> {
                 Dialog dialog = new Dialog();
                 myTrainingForm = new MyTrainingForm(myTrainingService, this,dialog);
-                myTrainingService.updateExerciseById(myTraining.getId(), myTraining);
+
+                MyTraining myTraining = new MyTraining();
+                myTraining.setUsers(principalUtils.getUserFromPrincipal());
+                //myTrainingService.updateExerciseById(myTraining.getId(), myTraining);
                 myTrainingForm.setMyTraining(myTraining);
+
                 dialog.add(myTrainingForm);
                 dialog.setWidth(15, Unit.REM);
                 dialog.open();
@@ -62,7 +71,7 @@ public class MyTrainingView extends VerticalLayout implements AppShellConfigurat
             );
 
             Button deleteButton = new Button(new Icon(VaadinIcon.TRASH), buttonClickEvent -> {
-                myTrainingService.deleteById(myTraining.getId());
+                myTrainingService.deleteById(evt.getId());
                 updateItems(); //hämtar på nytt den nya listan
             });
 

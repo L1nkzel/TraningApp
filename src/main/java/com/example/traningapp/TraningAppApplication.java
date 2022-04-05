@@ -9,6 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.List;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -20,15 +23,21 @@ public class TraningAppApplication implements CommandLineRunner {
     @Autowired
     MyTrainingRepo myTrainingRepo;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     public static void main(String[] args) {
         SpringApplication.run(TraningAppApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
-
-//        Users xherald = new Users("Charli", "charli@hotmail.com");
-//        usersRepo.save(xherald);
+//
+//       Users xherald = new Users("Charli",passwordEncoder.encode("passs"), "charli@hotmail.com");
+//       Users xherald2 = new Users("Ali",passwordEncoder.encode("pass"), "ALI@hotmail.com");
+//
+//
+//        usersRepo.saveAll(List.of(xherald,xherald2));
 
 //        Users user = usersRepo.findById(3).orElseThrow();
 //

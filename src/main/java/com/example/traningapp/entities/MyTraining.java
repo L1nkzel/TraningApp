@@ -14,7 +14,6 @@ public class MyTraining {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
     @Column(nullable = false)
     private String exercise;
@@ -25,7 +24,6 @@ public class MyTraining {
 
     @ManyToOne
     @JoinColumn(name = "uId")
-
     private Users users;
 
     public MyTraining(String exercise, int numRep, int numSet, Users users) {

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 
@@ -19,8 +20,11 @@ public class Users {
     @Column(name = "uId")
     private int uId;
 
-    @Column(name = "userName")
+    @Column(name = "userName", unique = true)
     private String userName;
+
+    @Column(name = "pass")
+    private String password;
 
     @Column(name = "email")
     private String email;
@@ -29,8 +33,10 @@ public class Users {
     @JsonIgnore
     private Set<MyTraining> myTrainings;
 
-    public Users(String userName, String email) {
+    public Users(String userName, String password, String email) {
         this.userName = userName;
+        this.password = password;
         this.email = email;
     }
+
 }
