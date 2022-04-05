@@ -8,6 +8,6 @@ import java.util.List;
 @Repository
 public interface MyTrainingRepo extends JpaRepository<MyTraining, Integer > {
 
-    List<MyTraining> findByUsers_uId(String uId);
+    List<MyTraining> findByUsers_UserName(String userName);
 
 }

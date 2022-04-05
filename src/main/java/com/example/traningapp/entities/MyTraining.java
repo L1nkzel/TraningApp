@@ -23,7 +23,7 @@ public class MyTraining {
     private int numSet;
 
     @ManyToOne
-    @JoinColumn(name = "uId")
+    @JoinColumn(name = "uId", nullable = false)
     private Users users;
 
     public MyTraining(String exercise, int numRep, int numSet, Users users) {

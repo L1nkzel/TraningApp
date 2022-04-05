@@ -43,4 +43,8 @@ public class MyTrainingService {
             return myTrainingRepo.save(myTraining);
 
         }
+
+        public List<MyTraining> findMyTrainingByUserUsername(String name){
+        return myTrainingRepo.findByUsers_UserName(name);
+        }
 }

@@ -50,8 +50,9 @@ public class MyTrainingForm extends FormLayout {
         } else {
             myTrainingService.createExercise(myTraining);
         }
-        setMyTraining(myTraining);
+        setMyTraining(null);
         myTrainingView.updateItems();
+
     }
 
     public void setMyTraining(MyTraining myTraining) {

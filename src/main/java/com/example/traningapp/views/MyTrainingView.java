@@ -39,7 +39,7 @@ public class MyTrainingView extends VerticalLayout implements AppShellConfigurat
         this.principalUtils = principalUtils;
         this.myTrainingService = myTrainingService;
         myTrainingForm = new MyTrainingForm(myTrainingService, this, dialog);
-        grid.setItems(myTrainingService.findAll());
+        updateItems();
 
 
         grid.addColumn(MyTraining::getExercise).setHeader("Exercise").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
@@ -53,12 +53,8 @@ public class MyTrainingView extends VerticalLayout implements AppShellConfigurat
             Button editButton = new Button(new Icon(VaadinIcon.EDIT), buttonClickEvent -> {
                 Dialog dialog = new Dialog();
                 myTrainingForm = new MyTrainingForm(myTrainingService, this,dialog);
-
-                MyTraining myTraining = new MyTraining();
-                myTraining.setUsers(principalUtils.getUserFromPrincipal());
-                //myTrainingService.updateExerciseById(myTraining.getId(), myTraining);
-                myTrainingForm.setMyTraining(myTraining);
-
+                myTrainingService.updateExerciseById(evt.getId(), evt);
+                myTrainingForm.setMyTraining(evt);
                 dialog.add(myTrainingForm);
                 dialog.setWidth(15, Unit.REM);
                 dialog.open();
@@ -97,7 +93,11 @@ public class MyTrainingView extends VerticalLayout implements AppShellConfigurat
         Button button = new Button("Add New Exercise", new Icon(VaadinIcon.PLUS), buttonClickEvent -> {
             Dialog dialog = new Dialog();
             MyTrainingForm myTrainingForm = new MyTrainingForm(myTrainingService, this,dialog);
-            myTrainingForm.setMyTraining(new MyTraining());
+            MyTraining myTraining = new MyTraining();
+            myTraining.setUsers(principalUtils.getUserFromPrincipal());
+            //myTrainingService.updateExerciseById(myTraining.getId(), myTraining);
+            myTrainingForm.setMyTraining(myTraining);
+
             dialog.add(myTrainingForm);
             dialog.open();
             dialog.setWidth(15, Unit.REM);
@@ -110,7 +110,7 @@ public class MyTrainingView extends VerticalLayout implements AppShellConfigurat
     }
 
     public void updateItems() {
-        grid.setItems(myTrainingService.findAll());
+        grid.setItems(myTrainingService.findMyTrainingByUserUsername(PrincipalUtils.getName()));
     }
 
 }
