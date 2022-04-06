@@ -4,6 +4,7 @@ import com.example.traningapp.entities.MyTraining;
 import com.example.traningapp.entities.Users;
 import com.example.traningapp.repo.MyTrainingRepo;
 import com.example.traningapp.repo.UsersRepo;
+import com.vaadin.flow.server.PWA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,6 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
+
 
 @SpringBootApplication
 @EnableJpaAuditing

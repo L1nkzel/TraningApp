@@ -39,8 +39,9 @@ public class AppView extends AppLayout{
 
         addToNavbar(navbarLayout);
 
-        RouterLink myTrainingViewLink = new RouterLink("View Excercises", MyTrainingView.class);
+        RouterLink myTrainingViewLink = new RouterLink("Exercises", MyTrainingView.class);
+        RouterLink myProgramViewLink = new RouterLink("Program", MyProgramView.class);
 
-        addToDrawer(new VerticalLayout(myTrainingViewLink));
+        addToDrawer(new VerticalLayout(myProgramViewLink,myTrainingViewLink));
     }
 }
