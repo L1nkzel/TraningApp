@@ -33,6 +33,10 @@ public class Users {
     @JsonIgnore
     private Set<MyTraining> myTrainings;
 
+    @OneToMany(mappedBy = "users")
+    @JsonIgnore
+    private Set<MyProgram> myPrograms;
+
     public Users(String userName, String password, String email) {
         this.userName = userName;
         this.password = password;

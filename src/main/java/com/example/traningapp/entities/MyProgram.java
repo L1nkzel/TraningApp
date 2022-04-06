@@ -1,10 +1,12 @@
 package com.example.traningapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -20,13 +22,18 @@ public class MyProgram {
     @Column(nullable = false)
     private String programName;
 
-    @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
-    private MyTraining myTraining;
+    @OneToMany(mappedBy = "myProgram")
+    @JsonIgnore
+    private Set<MyTraining> myTraining;
 
-    public MyProgram(int mpId, String programName, MyTraining myTraining) {
+    @ManyToOne
+    @JoinColumn(name = "uId", nullable = false)
+    private Users users;
+
+    public MyProgram(int mpId, String programName, Users users) {
         this.mpId = mpId;
         this.programName = programName;
-        this.myTraining = myTraining;
+        this.users = users;
+
     }
 }

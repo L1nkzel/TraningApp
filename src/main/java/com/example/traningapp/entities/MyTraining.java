@@ -28,14 +28,15 @@ public class MyTraining {
     @JoinColumn(name = "uId", nullable = false)
     private Users users;
 
-    @OneToMany(mappedBy = "myTraining")
-    @JsonIgnore
-    private Set<MyProgram> myProgram;
+    @ManyToOne
+    @JoinColumn(name = "mpId", nullable = false)
+    private MyProgram myProgram;
 
-    public MyTraining(String exercise, int numRep, int numSet, Users users) {
+    public MyTraining(String exercise, int numRep, int numSet, Users users, MyProgram myProgram) {
         this.exercise = exercise;
         this.numRep = numRep;
         this.numSet = numSet;
         this.users = users;
+        this.myProgram = myProgram;
     }
 }
