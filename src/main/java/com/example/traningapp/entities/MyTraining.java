@@ -1,9 +1,11 @@
 package com.example.traningapp.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -25,6 +27,10 @@ public class MyTraining {
     @ManyToOne
     @JoinColumn(name = "uId", nullable = false)
     private Users users;
+
+    @OneToMany(mappedBy = "myTraining")
+    @JsonIgnore
+    private Set<MyProgram> myProgram;
 
     public MyTraining(String exercise, int numRep, int numSet, Users users) {
         this.exercise = exercise;
