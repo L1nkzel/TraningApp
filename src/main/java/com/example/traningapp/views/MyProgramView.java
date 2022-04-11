@@ -1,3 +1,4 @@
+/*
 package com.example.traningapp.views;
 
 import com.example.traningapp.entities.MyProgram;
@@ -28,3 +29,4 @@ public class MyProgramView extends VerticalLayout {
     }
 
 }
+*/

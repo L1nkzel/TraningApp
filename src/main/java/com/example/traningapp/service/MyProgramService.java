@@ -1,3 +1,4 @@
+/*
 package com.example.traningapp.service;
 
 import com.example.traningapp.entities.MyProgram;
@@ -37,3 +38,4 @@ public class MyProgramService {
     }
 
 }
+*/

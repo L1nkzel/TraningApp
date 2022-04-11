@@ -1,3 +1,4 @@
+/*
 package com.example.traningapp.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -37,3 +38,4 @@ public class MyProgram {
 
     }
 }
+*/

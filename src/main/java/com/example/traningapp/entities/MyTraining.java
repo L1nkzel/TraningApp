@@ -28,15 +28,15 @@ public class MyTraining {
     @JoinColumn(name = "uId", nullable = false)
     private Users users;
 
-    @ManyToOne
+   /* @ManyToOne
     @JoinColumn(name = "mpId", nullable = false)
-    private MyProgram myProgram;
+    private MyProgram myProgram;*/
 
-    public MyTraining(String exercise, int numRep, int numSet, Users users, MyProgram myProgram) {
+    public MyTraining(String exercise, int numRep, int numSet, Users users /*,MyProgram myProgram*/) {
         this.exercise = exercise;
         this.numRep = numRep;
         this.numSet = numSet;
         this.users = users;
-        this.myProgram = myProgram;
+//        this.myProgram = myProgram;
     }
 }

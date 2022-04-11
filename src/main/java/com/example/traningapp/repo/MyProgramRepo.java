@@ -1,3 +1,4 @@
+/*
 package com.example.traningapp.repo;
 
 import com.example.traningapp.entities.MyProgram;
@@ -12,3 +13,4 @@ public interface MyProgramRepo extends JpaRepository<MyProgram, Integer> {
         List<MyProgram> findByMyTraining_Exercise(String exercise);
 
 }
+*/
