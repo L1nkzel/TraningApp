@@ -15,7 +15,7 @@ public class MyTrainingService {
     @Autowired
     MyTrainingRepo myTrainingRepo;
 
-    public List<MyTraining>findAll() {
+    public List<MyTraining> findAll() {
 //        if (uId == null) {
 //            return myTrainingRepo.findAll();
 //        } else {
@@ -37,14 +37,20 @@ public class MyTrainingService {
     }
 
     public MyTraining updateExerciseById(int id, MyTraining updatedExercise) {
-            MyTraining myTraining = myTrainingRepo.findById(id).orElseThrow();
+        MyTraining myTraining = myTrainingRepo.findById(id).orElseThrow();
 
-            BeanUtils.copyProperties(updatedExercise, myTraining,"id");
-            return myTrainingRepo.save(myTraining);
+        BeanUtils.copyProperties(updatedExercise, myTraining, "id");
+        return myTrainingRepo.save(myTraining);
 
+    }
+
+    public List<MyTraining> findMyTrainingByUserUsername(String name) {
+        if (name.equalsIgnoreCase("admin")) {
+            return myTrainingRepo.findAll();
+        } else {
+
+
+            return myTrainingRepo.findByUsers_UserName(name);
         }
-
-        public List<MyTraining> findMyTrainingByUserUsername(String name){
-        return myTrainingRepo.findByUsers_UserName(name);
-        }
+    }
 }
