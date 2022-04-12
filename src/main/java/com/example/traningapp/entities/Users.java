@@ -29,18 +29,23 @@ public class Users {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @OneToMany(mappedBy = "users")
     @JsonIgnore
     private Set<MyTraining> myTrainings;
 
-    @OneToMany(mappedBy = "users")
-    @JsonIgnore
-    private Set<MyProgram> myPrograms;
+//    @OneToMany(mappedBy = "users")
+//    @JsonIgnore
+//    private Set<MyProgram> myPrograms;
 
-    public Users(String userName, String password, String email) {
+    public Users(String userName, String password, String email, Role role) {
         this.userName = userName;
         this.password = password;
         this.email = email;
+        this.role = role;
     }
 
 }

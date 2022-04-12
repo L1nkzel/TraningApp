@@ -3,6 +3,8 @@ package com.example.traningapp.security;
 import com.example.traningapp.entities.Users;
 import com.example.traningapp.repo.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,6 +24,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Users user = usersRepo.findUsersByUserName(userName).orElseThrow();
 
 
-        return new User(user.getUserName(), user.getPassword() ,List.of());
+        return new User(user.getUserName(), user.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_"+ user.getRole())));
     }
 }

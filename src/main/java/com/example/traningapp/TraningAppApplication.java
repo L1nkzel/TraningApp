@@ -1,10 +1,10 @@
 package com.example.traningapp;
 
 import com.example.traningapp.entities.MyTraining;
+import com.example.traningapp.entities.Role;
 import com.example.traningapp.entities.Users;
 import com.example.traningapp.repo.MyTrainingRepo;
 import com.example.traningapp.repo.UsersRepo;
-import com.vaadin.flow.server.PWA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -34,9 +34,9 @@ public class TraningAppApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//
-//       Users xherald = new Users("Charli",passwordEncoder.encode("passs"), "charli@hotmail.com");
-//       Users xherald2 = new Users("Ali",passwordEncoder.encode("pass"), "ALI@hotmail.com");
+
+//       Users xherald = new Users("Charli",passwordEncoder.encode("passs"), "charli@hotmail.com", Role.ADMIN);
+//       Users xherald2 = new Users("Ali",passwordEncoder.encode("pass"), "ALI@hotmail.com", Role.USER);
 //
 //
 //        usersRepo.saveAll(List.of(xherald,xherald2));

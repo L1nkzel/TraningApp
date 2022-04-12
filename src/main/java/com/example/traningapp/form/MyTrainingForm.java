@@ -2,6 +2,7 @@ package com.example.traningapp.form;
 
 import com.example.traningapp.entities.MyTraining;
 import com.example.traningapp.service.MyTrainingService;
+import com.example.traningapp.views.AdminView;
 import com.example.traningapp.views.MyTrainingView;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
@@ -18,6 +19,7 @@ public class MyTrainingForm extends FormLayout {
     IntegerField numRep = new IntegerField("Reps");
     IntegerField numSet = new IntegerField("Set");
     Button saveButton = new Button("Save");
+    AdminView adminView;
 
 
     Binder<MyTraining> binder = new BeanValidationBinder<>(MyTraining.class);
@@ -41,6 +43,14 @@ public class MyTrainingForm extends FormLayout {
         add(exercise,numRep,numSet,saveButton);
 
 
+    }
+
+    public MyTrainingForm(MyTrainingService myTrainingService, AdminView adminView, Dialog dialog) {
+        this.myTrainingService = myTrainingService;
+        this.adminView = adminView;
+        this.dialog=new Dialog();
+        setVisible(false);
+        binder.bindInstanceFields(this);
     }
 
     private void onSave() {
