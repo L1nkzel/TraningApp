@@ -12,8 +12,6 @@ public class LoginView extends Div implements BeforeEnterObserver {
 
     LoginOverlay loginOverlay = new LoginOverlay();
 
-
-
     public LoginView(){
 
         loginOverlay.setTitle("My Training");

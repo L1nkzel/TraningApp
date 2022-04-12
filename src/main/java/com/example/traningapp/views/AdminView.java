@@ -22,7 +22,7 @@ import javax.annotation.security.RolesAllowed;
 
 import static com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode.END;
 
-@Route(value = "/", layout = AppView.class)
+@Route(value = "/admin", layout = AppView.class)
 @RolesAllowed("ADMIN")
 public class AdminView extends VerticalLayout {
 
@@ -38,7 +38,6 @@ public class AdminView extends VerticalLayout {
         this.myTrainingService = myTrainingService;
         myTrainingForm = new MyTrainingForm(myTrainingService, this, dialog);
         updateItems();
-
 
 
         grid.addColumn(MyTraining::getExercise).setHeader("Exercise").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
@@ -107,7 +106,6 @@ public class AdminView extends VerticalLayout {
 
         add(button);
     }
-
 
 
     public void updateItems() {

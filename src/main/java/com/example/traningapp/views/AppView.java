@@ -12,6 +12,7 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.RouterLink;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 
 public class AppView extends AppLayout{
@@ -38,10 +39,18 @@ public class AppView extends AppLayout{
         navbarLayout.setAlignItems(FlexComponent.Alignment.CENTER);
 
         addToNavbar(navbarLayout);
-
+        VerticalLayout drawerLayout = new VerticalLayout();
+        RouterLink mainViewLink = new RouterLink("Home", MainView.class);
         RouterLink myTrainingViewLink = new RouterLink("Exercises", MyTrainingView.class);
         RouterLink adminViewLink = new RouterLink("Admin", AdminView.class);
 
-        addToDrawer(new VerticalLayout(adminViewLink,myTrainingViewLink));
+
+        if (PrincipalUtils.getRoles().stream().anyMatch(grantedAuthority -> grantedAuthority.equals(new SimpleGrantedAuthority("ROLE_ADMIN")))){
+            drawerLayout.add(mainViewLink, adminViewLink);
+        } else {
+            drawerLayout.add(mainViewLink, myTrainingViewLink);
+        }
+
+        addToDrawer(drawerLayout);
     }
 }

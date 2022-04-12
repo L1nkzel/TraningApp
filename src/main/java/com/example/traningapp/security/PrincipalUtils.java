@@ -6,9 +6,12 @@ import com.example.traningapp.views.MyTrainingView;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.server.VaadinServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 @Service
 public class PrincipalUtils {
@@ -30,6 +33,10 @@ public class PrincipalUtils {
                 .getAuthentication()
                 .getName()
                 .equalsIgnoreCase("anonymousUser");
+    }
+
+    public static Collection<? extends GrantedAuthority> getRoles(){
+        return SecurityContextHolder.getContext().getAuthentication().getAuthorities();
     }
 
     public static void logout(){
