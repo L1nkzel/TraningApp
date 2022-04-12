@@ -45,12 +45,7 @@ public class MyTrainingService {
     }
 
     public List<MyTraining> findMyTrainingByUserUsername(String name) {
-        if (name.equalsIgnoreCase("admin")) {
-            return myTrainingRepo.findAll();
-        } else {
-
 
             return myTrainingRepo.findByUsers_UserName(name);
         }
     }
-}

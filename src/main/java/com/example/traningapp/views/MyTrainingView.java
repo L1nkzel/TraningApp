@@ -12,7 +12,6 @@ import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.AppShellConfigurator;
@@ -95,7 +94,6 @@ public class MyTrainingView extends VerticalLayout implements AppShellConfigurat
             MyTrainingForm myTrainingForm = new MyTrainingForm(myTrainingService, this,dialog);
             MyTraining myTraining = new MyTraining();
             myTraining.setUsers(principalUtils.getUserFromPrincipal());
-            //myTrainingService.updateExerciseById(myTraining.getId(), myTraining);
             myTrainingForm.setMyTraining(myTraining);
 
             dialog.add(myTrainingForm);
