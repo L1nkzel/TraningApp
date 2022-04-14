@@ -1,7 +1,10 @@
 package com.example.traningapp.service;
 
 import com.example.traningapp.entities.MyTraining;
+import com.example.traningapp.entities.Users;
 import com.example.traningapp.repo.MyTrainingRepo;
+import com.example.traningapp.repo.UsersRepo;
+import com.example.traningapp.security.PrincipalUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,7 @@ public class MyTrainingService {
 
     @Autowired
     MyTrainingRepo myTrainingRepo;
+
 
     public List<MyTraining> findAll() {
 //        if (uId == null) {
@@ -46,6 +50,7 @@ public class MyTrainingService {
 
     public List<MyTraining> findMyTrainingByUserUsername(String name) {
 
-            return myTrainingRepo.findByUsers_UserName(name);
-        }
+        return myTrainingRepo.findByUsers_UserName(name);
+
     }
+}

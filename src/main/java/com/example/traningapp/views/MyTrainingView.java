@@ -20,6 +20,7 @@ import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 
 import static com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode.*;
 
@@ -37,7 +38,7 @@ public class MyTrainingView extends VerticalLayout implements AppShellConfigurat
     public MyTrainingView(MyTrainingService myTrainingService, PrincipalUtils principalUtils){
         this.principalUtils = principalUtils;
         this.myTrainingService = myTrainingService;
-        myTrainingForm = new MyTrainingForm(myTrainingService, this,null, dialog);
+        myTrainingForm = new MyTrainingForm(myTrainingService, this, dialog);
         updateItems();
 
 
@@ -51,7 +52,7 @@ public class MyTrainingView extends VerticalLayout implements AppShellConfigurat
 
             Button editButton = new Button(new Icon(VaadinIcon.EDIT), buttonClickEvent -> {
                 Dialog dialog = new Dialog();
-                myTrainingForm = new MyTrainingForm(myTrainingService, this,null,dialog);
+                myTrainingForm = new MyTrainingForm(myTrainingService, this,dialog);
                 myTrainingService.updateExerciseById(evt.getId(), evt);
                 myTrainingForm.setMyTraining(evt);
                 dialog.add(myTrainingForm);
@@ -91,7 +92,7 @@ public class MyTrainingView extends VerticalLayout implements AppShellConfigurat
 
         Button button = new Button("Add New Exercise", new Icon(VaadinIcon.PLUS), buttonClickEvent -> {
             Dialog dialog = new Dialog();
-            MyTrainingForm myTrainingForm = new MyTrainingForm(myTrainingService, this,null,dialog);
+            MyTrainingForm myTrainingForm = new MyTrainingForm(myTrainingService, this,dialog);
             MyTraining myTraining = new MyTraining();
             myTraining.setUsers(principalUtils.getUserFromPrincipal());
             myTrainingForm.setMyTraining(myTraining);

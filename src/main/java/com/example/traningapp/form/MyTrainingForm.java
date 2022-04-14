@@ -19,16 +19,17 @@ public class MyTrainingForm extends FormLayout {
     IntegerField numRep = new IntegerField("Reps");
     IntegerField numSet = new IntegerField("Set");
     Button saveButton = new Button("Save");
+    Button saveButtonAdmin = new Button("Save");
     Binder<MyTraining> binder = new BeanValidationBinder<>(MyTraining.class);
     MyTrainingService myTrainingService;
     MyTrainingView myTrainingView;
     AdminView adminView;
     Dialog dialog;
 
-    public MyTrainingForm(MyTrainingService myTrainingService, MyTrainingView myTrainingView, AdminView adminView, Dialog dialog){
+    public MyTrainingForm(MyTrainingService myTrainingService, MyTrainingView myTrainingView, Dialog dialog){
         this.myTrainingService = myTrainingService;
         this.myTrainingView = myTrainingView;
-        this.adminView = adminView;
+
         this.dialog=new Dialog();
         setVisible(false);
         binder.bindInstanceFields(this);
@@ -40,6 +41,23 @@ public class MyTrainingForm extends FormLayout {
         );
 
         add(exercise,numRep,numSet,saveButton);
+
+
+    }
+    public MyTrainingForm(MyTrainingService myTrainingService, AdminView adminView, Dialog dialog){
+        this.myTrainingService = myTrainingService;
+        this.adminView = adminView;
+        this.dialog=new Dialog();
+        setVisible(false);
+        binder.bindInstanceFields(this);
+
+        saveButtonAdmin.addClickListener(buttonClickEvent -> {
+                    onSaveAdmin();
+                    dialog.close();
+                }
+        );
+
+        add(exercise,numRep,numSet,saveButtonAdmin);
 
 
     }
@@ -57,6 +75,17 @@ public class MyTrainingForm extends FormLayout {
 
     }
 
+    private void onSaveAdmin() {
+        MyTraining myTraining = binder.validate().getBinder().getBean();
+        if (myTraining.getId() !=0 ){
+            myTrainingService.updateExerciseById(myTraining.getId(),myTraining);
+        } else {
+            myTrainingService.createExercise(myTraining);
+        }
+        setMyTraining(null);
+        adminView.updateItems();
+
+    }
     public void setMyTraining(MyTraining myTraining) {
         if (myTraining != null){
             binder.setBean(myTraining);
