@@ -5,7 +5,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 
-@Route(value = "", layout = AppView.class)
+@Route(value = "/", layout = AppView.class)
 @AnonymousAllowed
 public class MainView extends VerticalLayout {
 

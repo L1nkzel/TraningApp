@@ -3,7 +3,6 @@ package com.example.traningapp.security;
 import com.example.traningapp.entities.Users;
 import com.example.traningapp.repo.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

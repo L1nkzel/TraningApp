@@ -19,17 +19,16 @@ public class MyTrainingForm extends FormLayout {
     IntegerField numRep = new IntegerField("Reps");
     IntegerField numSet = new IntegerField("Set");
     Button saveButton = new Button("Save");
-    AdminView adminView;
-
-
     Binder<MyTraining> binder = new BeanValidationBinder<>(MyTraining.class);
     MyTrainingService myTrainingService;
     MyTrainingView myTrainingView;
+    AdminView adminView;
     Dialog dialog;
 
-    public MyTrainingForm(MyTrainingService myTrainingService, MyTrainingView myTrainingView, Dialog dialog){
+    public MyTrainingForm(MyTrainingService myTrainingService, MyTrainingView myTrainingView, AdminView adminView, Dialog dialog){
         this.myTrainingService = myTrainingService;
         this.myTrainingView = myTrainingView;
+        this.adminView = adminView;
         this.dialog=new Dialog();
         setVisible(false);
         binder.bindInstanceFields(this);
@@ -45,14 +44,6 @@ public class MyTrainingForm extends FormLayout {
 
     }
 
-    public MyTrainingForm(MyTrainingService myTrainingService, AdminView adminView, Dialog dialog) {
-        this.myTrainingService = myTrainingService;
-        this.adminView = adminView;
-        this.dialog=new Dialog();
-        setVisible(false);
-        binder.bindInstanceFields(this);
-    }
-
     private void onSave() {
         MyTraining myTraining = binder.validate().getBinder().getBean();
         if (myTraining.getId() !=0 ){
@@ -62,6 +53,7 @@ public class MyTrainingForm extends FormLayout {
         }
         setMyTraining(null);
         myTrainingView.updateItems();
+        adminView.updateItems();
 
     }
 

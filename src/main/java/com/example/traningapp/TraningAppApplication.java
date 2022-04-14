@@ -35,11 +35,12 @@ public class TraningAppApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-//       Users xherald = new Users("Charli",passwordEncoder.encode("passs"), "charli@hotmail.com", Role.ADMIN);
-//       Users xherald2 = new Users("Ali",passwordEncoder.encode("pass"), "ALI@hotmail.com", Role.USER);
-//
-//
-//        usersRepo.saveAll(List.of(xherald,xherald2));
+//       Users charli = new Users("Charli",passwordEncoder.encode("passs"), "charli@hotmail.com", Role.ADMIN);
+//       Users ali = new Users("Ali",passwordEncoder.encode("pass"), "ALI@hotmail.com", Role.USER);
+//       Users sara = new Users("Sara",passwordEncoder.encode("pass"), "Sara@hotmail.com", Role.USER);
+
+
+//        usersRepo.saveAll(List.of(charli,ali,sara));
 
 //        Users user = usersRepo.findById(3).orElseThrow();
 //

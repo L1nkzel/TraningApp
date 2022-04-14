@@ -1,5 +1,6 @@
 package com.example.traningapp.views;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.login.LoginOverlay;
 import com.vaadin.flow.router.BeforeEnterEvent;
@@ -30,6 +31,7 @@ public class LoginView extends Div implements BeforeEnterObserver {
                 .getParameters()
                 .containsKey("error")){
             loginOverlay.setError(true);
+
         }
 
     }

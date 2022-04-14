@@ -24,21 +24,22 @@ import static com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyConte
 public class AdminView extends VerticalLayout {
 
     MyTrainingService myTrainingService;
-    PrincipalUtils principalUtils;
     Grid<MyTraining> grid = new Grid<>(MyTraining.class,false);
     MyTrainingForm myTrainingForm;
     Dialog dialog = new Dialog();
+    PrincipalUtils principalUtils;
 
     public AdminView(MyTrainingService myTrainingService, PrincipalUtils principalUtils){
         this.principalUtils = principalUtils;
         this.myTrainingService = myTrainingService;
-        myTrainingForm = new MyTrainingForm(myTrainingService, this, dialog);
+        myTrainingForm = new MyTrainingForm(myTrainingService,null,this,dialog);
         updateItems();
 
 
         grid.addColumn(MyTraining::getExercise).setHeader("Exercise").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
         grid.addColumn(MyTraining::getNumRep).setHeader("Reps").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
         grid.addColumn(MyTraining::getNumSet).setHeader("Set").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
+        grid.addColumn(myTraining1 -> myTraining1.getUsers().getUserName()).setHeader("User").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
         grid.setWidth(15, Unit.REM);
 
 
@@ -46,7 +47,7 @@ public class AdminView extends VerticalLayout {
 
             Button editButton = new Button(new Icon(VaadinIcon.EDIT), buttonClickEvent -> {
                 Dialog dialog = new Dialog();
-                myTrainingForm = new MyTrainingForm(myTrainingService, this,dialog);
+                myTrainingForm = new MyTrainingForm(myTrainingService,null, this, dialog);
                 myTrainingService.updateExerciseById(evt.getId(), evt);
                 myTrainingForm.setMyTraining(evt);
                 dialog.add(myTrainingForm);
@@ -86,7 +87,7 @@ public class AdminView extends VerticalLayout {
 
         Button button = new Button("Add New Exercise", new Icon(VaadinIcon.PLUS), buttonClickEvent -> {
             Dialog dialog = new Dialog();
-            MyTrainingForm myTrainingForm = new MyTrainingForm(myTrainingService, this,dialog);
+            MyTrainingForm myTrainingForm = new MyTrainingForm(myTrainingService,null,this,dialog);
             MyTraining myTraining = new MyTraining();
             myTraining.setUsers(principalUtils.getUserFromPrincipal());
             //myTrainingService.updateExerciseById(myTraining.getId(), myTraining);
@@ -107,5 +108,6 @@ public class AdminView extends VerticalLayout {
     public void updateItems() {
         grid.setItems(myTrainingService.findAll());
     }
+
 
 }

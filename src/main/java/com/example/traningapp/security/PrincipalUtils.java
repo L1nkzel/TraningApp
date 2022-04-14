@@ -2,6 +2,8 @@ package com.example.traningapp.security;
 
 import com.example.traningapp.entities.Users;
 import com.example.traningapp.repo.UsersRepo;
+import com.example.traningapp.views.AdminView;
+import com.example.traningapp.views.AppView;
 import com.example.traningapp.views.MainView;
 import com.example.traningapp.views.MyTrainingView;
 import com.vaadin.flow.component.UI;
@@ -41,7 +43,7 @@ public class PrincipalUtils {
     }
 
     public static void logout(){
-        UI.getCurrent().navigate(MainView.class);
+        UI.getCurrent().navigate("/");
         new SecurityContextLogoutHandler().logout(VaadinServletRequest.getCurrent().getHttpServletRequest(),null,null);
     }
 
