@@ -71,7 +71,7 @@ public class MyTrainingForm extends FormLayout {
         }
         setMyTraining(null);
         myTrainingView.updateItems();
-        adminView.updateItems();
+
 
     }
 
