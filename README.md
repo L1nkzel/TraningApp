@@ -1,1 +1,1 @@
-A basic Training CRUD application using Java/Springframework and Vaadin(frontend).
+A basic CRUD Training application using Java/Springframework and Vaadin(frontend).
